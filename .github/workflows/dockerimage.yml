@@ -11,4 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: my_date = $(date +%s)
+      run: docker build . --file Dockerfile --tag fethbita/fethbita.com:$my_date
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      run: docker push fethbita/fethbita.com:$my_date
