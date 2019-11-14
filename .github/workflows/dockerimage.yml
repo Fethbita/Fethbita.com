@@ -1,18 +1,13 @@
-name: Docker Image CI
-
+name: Publish Docker
 on: [push]
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build . -t ${{ secrets.DOCKER_REGISTRY }}:$my_date
-    - name: Login to Dockerhub
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-    - name: Push the image to Dockerhub
-      run: docker push ${{ secrets.DOCKER_REGISTRY }}:$my_date
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@2.7
+      with:
+        name: fethbita/fethbita.com
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
