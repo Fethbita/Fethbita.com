@@ -10,10 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Get mydate
-      run: my_date=$(date +%s)
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_REGISTRY }}:$my_date
+      run: docker build . -t ${{ secrets.DOCKER_REGISTRY }}:$my_date
     - name: Login to Dockerhub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the image to Dockerhub
