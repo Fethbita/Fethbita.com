@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Get mydate
-      run: my_date = $(date +%s)
+      run: my_date=$(date +%s)
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag fethbita/fethbita.com:$my_date
     - name: Login to Dockerhub
