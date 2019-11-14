@@ -13,8 +13,8 @@ jobs:
     - name: Get mydate
       run: my_date=$(date +%s)
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag fethbita/fethbita:$my_date
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_REGISTRY }}:$my_date
     - name: Login to Dockerhub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the image to Dockerhub
-      run: docker push fethbita/fethbita.com:$my_date
+      run: docker push ${{ secrets.DOCKER_REGISTRY }}:$my_date
