@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.7
+      uses: elgohr/Publish-Docker-Github-Action@a72734e15780689886c6518c4dc2e17876d05d4e
       with:
         name: fethbita/fethbita.com
         username: ${{ secrets.DOCKER_USERNAME }}
